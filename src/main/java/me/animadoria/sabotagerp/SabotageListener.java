@@ -13,7 +13,7 @@ public class SabotageListener {
     public void onServerJoin(FMLNetworkEvent.ClientConnectedToServerEvent e) {
 
         String ip = (Minecraft.getMinecraft().getCurrentServerData()).serverIP;
-        if (!Minecraft.getMinecraft().isSingleplayer() && Arrays.asList(SabotageRP.INSTANCE.serverIPs).contains(ip)) {
+        if (!Minecraft.getMinecraft().isSingleplayer() && (Arrays.asList(SabotageRP.INSTANCE.serverIPs).contains(ip) || ip.endsWith("sabotador.com"))) { // if it's not single player AND it contains allowed ips or the ip ends with sabotador.com
             SabotageRP.INSTANCE.onServer = true;
             SabotageRP.INSTANCE.waitingServerName = true;
             e.manager.sendPacket(new C01PacketChatMessage("/server"));
