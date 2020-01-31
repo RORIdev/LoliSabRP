@@ -1,0 +1,16 @@
+[
+{
+  "modid": "sabotagerp",
+  "name": "Sabotage RP",
+  "description": "Mod que implementa Rich Presence no servidor Sabotador.com",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Animadoria"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
