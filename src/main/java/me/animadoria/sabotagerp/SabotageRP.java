@@ -1,11 +1,6 @@
 package me.animadoria.sabotagerp;
 
-/*import club.minnced.discord.rpc.DiscordEventHandlers;
-import club.minnced.discord.rpc.DiscordRPC;
-import club.minnced.discord.rpc.DiscordRichPresence;*/
-
 import com.jagrosh.discordipc.IPCClient;
-import com.jagrosh.discordipc.IPCListener;
 import com.jagrosh.discordipc.entities.RichPresence;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -21,7 +16,7 @@ public class SabotageRP {
     public static final String MODNAME = "Sabotage RP";
 
     @Mod.Instance
-    public static SabotageRP INSTANCE;
+    public static SabotageRP instance;
 
     public IPCClient discord;
     public boolean onServer;
@@ -59,5 +54,9 @@ public class SabotageRP {
 
     public void setMainMenuPresence() {
         discord.sendRichPresence(new RichPresence.Builder().setDetails("No menu principal").build());
+    }
+
+    public void setOtherPresence() {
+        discord.sendRichPresence(new RichPresence.Builder().setDetails("Em outro servidor").build());
     }
 }

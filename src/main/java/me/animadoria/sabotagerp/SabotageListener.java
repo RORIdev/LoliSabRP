@@ -13,34 +13,37 @@ public class SabotageListener {
     public void onServerJoin(FMLNetworkEvent.ClientConnectedToServerEvent e) {
 
         String ip = (Minecraft.getMinecraft().getCurrentServerData()).serverIP;
-        if (!Minecraft.getMinecraft().isSingleplayer() && (Arrays.asList(SabotageRP.INSTANCE.serverIPs).contains(ip) || ip.endsWith("sabotador.com"))) { // if it's not single player AND it contains allowed ips or the ip ends with sabotador.com
-            SabotageRP.INSTANCE.onServer = true;
-            SabotageRP.INSTANCE.waitingServerName = true;
+        if (!Minecraft.getMinecraft().isSingleplayer() && (Arrays.asList(SabotageRP.instance.serverIPs).contains(ip) || ip.endsWith("sabotador.com"))) { // if it's not single player AND it contains allowed ips or the ip ends with sabotador.com
+            SabotageRP.instance.onServer = true;
+            SabotageRP.instance.waitingServerName = true;
             e.manager.sendPacket(new C01PacketChatMessage("/server"));
+        }
+        else {
+            SabotageRP.instance.setOtherPresence();
         }
     }
 
     @SubscribeEvent
     public void onServerQuit(FMLNetworkEvent.ClientDisconnectionFromServerEvent e) {
-        SabotageRP.INSTANCE.onServer = false;
-        SabotageRP.INSTANCE.setMainMenuPresence();
+        SabotageRP.instance.onServer = false;
+        SabotageRP.instance.setMainMenuPresence();
     }
 
     @SubscribeEvent
     public void onChat(ClientChatReceivedEvent e) {
-        if (SabotageRP.INSTANCE.onServer) {
-            if (SabotageRP.INSTANCE.waitingServerName) {
+        if (SabotageRP.instance.onServer) {
+            if (SabotageRP.instance.waitingServerName) {
                 if (e.message.getUnformattedText().startsWith("Sala> Você está atualmente na sala: ")) {
-                    SabotageRP.INSTANCE.currentServer = e.message.getUnformattedText().replace("Sala> Você está atualmente na sala: ", "");
+                    SabotageRP.instance.currentServer = e.message.getUnformattedText().replace("Sala> Você está atualmente na sala: ", "");
                     e.setCanceled(true);
-                    SabotageRP.INSTANCE.updatePresence();
-                    SabotageRP.INSTANCE.waitingServerName = false;
+                    SabotageRP.instance.updatePresence();
+                    SabotageRP.instance.waitingServerName = false;
                 }
             }
 
             if (e.message.getUnformattedText().startsWith("Entrar> Você trocou de sala de ")) {
-                SabotageRP.INSTANCE.currentServer = e.message.getUnformattedText().split(" para ")[1];
-                SabotageRP.INSTANCE.updatePresence();
+                SabotageRP.instance.currentServer = e.message.getUnformattedText().split(" para ")[1];
+                SabotageRP.instance.updatePresence();
             }
         }
 
