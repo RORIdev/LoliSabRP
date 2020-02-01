@@ -22,7 +22,7 @@ plugins {
     id "net.minecraftforge.gradle.forge" version "2.0.2"
 }
 */
-version = "1.2.1"
+version = "1.2.1-hotfix"
 group = "me.animadoria.sabotagerp" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "sabotagerp"
 
@@ -98,11 +98,7 @@ shadowJar {
     from sourceSets.main.output
 }
 
-reobf {
-    shadowJar {}
-}
-
 build.dependsOn shadowJar
 reobfJar.dependsOn shadowJar
 
-sourceSets { main { output.resourcesDir = output.classesDir } }
+//sourceSets { main { output.resourcesDir = output.classesDir } }
