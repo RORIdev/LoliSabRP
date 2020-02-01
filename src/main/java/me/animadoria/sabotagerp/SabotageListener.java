@@ -7,7 +7,7 @@ import net.minecraft.util.IChatComponent;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.FMLNetworkEvent;
-import org.apache.commons.lang3.reflect.FieldUtils;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
 import java.util.Arrays;
 
@@ -40,12 +40,9 @@ public class SabotageListener {
                     e.setCanceled(true);
 
                     GuiPlayerTabOverlay tab = Minecraft.getMinecraft().ingameGUI.getTabList();
-                    try {
-                        IChatComponent header = (IChatComponent) FieldUtils.readField(tab, "header", true);
-                        SabotageRP.instance.currentGame = header.getUnformattedText().split("\nVocê está jogando ")[1].replace(" no sabotador.com", "").replace("\n", "");
-                    } catch (IllegalAccessException ex) {
-                        ex.printStackTrace();
-                    }
+                    IChatComponent header = ReflectionHelper.getPrivateValue(GuiPlayerTabOverlay.class, tab, "header", "field_175256_i");
+                    SabotageRP.instance.currentGame = header.getUnformattedText().split("\nVocê está jogando ")[1].replace(" no sabotador.com", "").replace("\n", "");
+
                     SabotageRP.instance.updatePresence();
                     SabotageRP.instance.waitingServerName = false;
                 }
@@ -55,12 +52,8 @@ public class SabotageListener {
                 SabotageRP.instance.waitingGameNameChange = true;
                 SabotageRP.instance.currentServer = e.message.getUnformattedText().split(" para ")[1];
                 GuiPlayerTabOverlay tab = Minecraft.getMinecraft().ingameGUI.getTabList();
-                try {
-                    IChatComponent header = (IChatComponent) FieldUtils.readField(tab, "header", true);
-                    SabotageRP.instance.currentGame = header.getUnformattedText().split("\nVocê está jogando ")[1].replace(" no sabotador.com", "").replace("\n", "");
-                } catch (IllegalAccessException ex) {
-                    ex.printStackTrace();
-                }
+                IChatComponent header = ReflectionHelper.getPrivateValue(GuiPlayerTabOverlay.class, tab, "header", "field_175256_i");
+                SabotageRP.instance.currentGame = header.getUnformattedText().split("\nVocê está jogando ")[1].replace(" no sabotador.com", "").replace("\n", "");
                 SabotageRP.instance.updatePresence();
             }
         }
