@@ -6,9 +6,11 @@ commands.sabotagerp.enable.success=Rich Presence foi ativado com sucesso.
 
 sabotagerp.game.sabotage=Sabotador
 sabotagerp.game.bedwars=BedWars
+sabotagerp.game.build=Build
 
 sabotagerp.presence.room=Na sala %s
 sabotagerp.presence.game=Jogando %s
 sabotagerp.presence.hub=No Hub
 sabotagerp.presence.mainmenu=No menu principal
 sabotagerp.presence.otherserver=Em outro servidor
+
