@@ -5,7 +5,6 @@ import net.minecraft.client.gui.GuiPlayerTabOverlay;
 import net.minecraft.network.play.client.C01PacketChatMessage;
 import net.minecraft.util.IChatComponent;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
-import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.FMLNetworkEvent;
 import org.apache.commons.lang3.reflect.FieldUtils;
@@ -35,10 +34,6 @@ public class SabotageListener {
     @SubscribeEvent
     public void onChat(ClientChatReceivedEvent e) {
         if (SabotageRP.instance.onServer && SabotageRP.instance.discordEnabled) {
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
             if (SabotageRP.instance.waitingServerName) {
                 if (e.message.getUnformattedText().startsWith("Sala> Você está atualmente na sala: ")) {
                     SabotageRP.instance.currentServer = e.message.getUnformattedText().replace("Sala> Você está atualmente na sala: ", "");
@@ -71,8 +66,6 @@ public class SabotageListener {
         }
 
     }
-
-
 
 
 }
