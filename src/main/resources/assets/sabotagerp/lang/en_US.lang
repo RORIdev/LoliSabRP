@@ -1,0 +1,5 @@
+commands.sabotagerp.usage=/sabotagerp <on|off>
+commands.sabotagerp.disable.error=Rich Presence is already disabled!
+commands.sabotagerp.disable.success=Rich Presence was successfully disabled.
+commands.sabotagerp.enable.error=Rich Presence is already enabled!
+commands.sabotagerp.enable.success=Rich Presence was successfully enabled.
