@@ -2,4 +2,17 @@ commands.sabotagerp.usage=/sabotagerp <on|off>
 commands.sabotagerp.disable.error=Rich Presence is already disabled!
 commands.sabotagerp.disable.success=Rich Presence was successfully disabled.
 commands.sabotagerp.enable.error=Rich Presence is already enabled!
+<<<<<<< Updated upstream
 commands.sabotagerp.enable.success=Rich Presence was successfully enabled.
+=======
+commands.sabotagerp.enable.success=Rich Presence was successfully enabled.
+
+sabotagerp.game.sabotage=Sabotage
+sabotagerp.game.bedwars=BedWars
+
+sabotagerp.presence.room=On room %s
+sabotagerp.presence.game=Playing %s
+sabotagerp.presence.hub=In Hub
+sabotagerp.presence.mainmenu=On main menu
+sabotagerp.presence.otherserver=On other server
+>>>>>>> Stashed changes

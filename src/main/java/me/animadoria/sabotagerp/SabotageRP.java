@@ -2,6 +2,10 @@ package me.animadoria.sabotagerp;
 
 import com.jagrosh.discordipc.IPCClient;
 import com.jagrosh.discordipc.entities.RichPresence;
+<<<<<<< Updated upstream
+=======
+import net.minecraft.client.resources.I18n;
+>>>>>>> Stashed changes
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -24,7 +28,9 @@ public class SabotageRP {
     public IPCClient discord;
     public boolean onServer;
     public boolean waitingServerName;
+    public boolean waitingGameNameChange;
     public String currentServer;
+    public String currentGame;
 
     public String[] serverIPs = new String[]{"sabotador.com", "mini.gamemods.com.br", "sab.sabotador.com", "jogar.gamemods.com.br"};
 
@@ -45,12 +51,21 @@ public class SabotageRP {
     public void updatePresence() {
         if (discordEnabled) {
             RichPresence.Builder builder = new RichPresence.Builder()
+<<<<<<< Updated upstream
                     .setDetails("Na sala " + currentServer)
+=======
+                    .setDetails(I18n.format("sabotagerp.presence.room", currentServer))
+                    .setState(I18n.format("sabotagerp.presence.game", I18n.format("sabotagerp.game." + currentGame)))
+>>>>>>> Stashed changes
                     .setStartTimestamp(OffsetDateTime.now())
                     .setSmallImage("gamemods512c", "sabotador.com")
                     .setLargeImage("sabotador");
             if (currentServer.toLowerCase().contains("hub"))
+<<<<<<< Updated upstream
                 builder.setDetails("No Hub");
+=======
+                builder.setDetails(I18n.format("sabotagerp.presence.hub")).setState(null);
+>>>>>>> Stashed changes
 
             discord.sendRichPresence(builder.build());
         }
@@ -58,11 +73,19 @@ public class SabotageRP {
 
     public void setMainMenuPresence() {
         if (discordEnabled)
+<<<<<<< Updated upstream
             discord.sendRichPresence(new RichPresence.Builder().setDetails("No menu principal").build());
+=======
+            discord.sendRichPresence(new RichPresence.Builder().setDetails(I18n.format("sabotagerp.presence.mainmenu")).build());
+>>>>>>> Stashed changes
     }
 
     public void setOtherPresence() {
         if (discordEnabled)
+<<<<<<< Updated upstream
             discord.sendRichPresence(new RichPresence.Builder().setDetails("Em outro servidor").build());
+=======
+            discord.sendRichPresence(new RichPresence.Builder().setDetails(I18n.format("sabotagerp.presence.otherserver")).build());
+>>>>>>> Stashed changes
     }
 }
