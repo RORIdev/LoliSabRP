@@ -1,0 +1,5 @@
+commands.sabotagerp.usage=/sabotagerp <on|off>
+commands.sabotagerp.disable.error=Rich Presence já está desativado!
+commands.sabotagerp.disable.success=Rich Presence foi desativado com sucesso.
+commands.sabotagerp.enable.error=Rich Presence já está ativado!
+commands.sabotagerp.enable.success=Rich Presence foi ativado com sucesso.

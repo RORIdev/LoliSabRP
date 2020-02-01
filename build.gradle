@@ -104,3 +104,5 @@ reobf {
 
 build.dependsOn shadowJar
 reobfJar.dependsOn shadowJar
+
+sourceSets { main { output.resourcesDir = output.classesDir } }

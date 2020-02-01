@@ -31,7 +31,7 @@ public class SabotageListener {
 
     @SubscribeEvent
     public void onChat(ClientChatReceivedEvent e) {
-        if (SabotageRP.instance.onServer) {
+        if (SabotageRP.instance.onServer && SabotageRP.instance.discordEnabled) {
             if (SabotageRP.instance.waitingServerName) {
                 if (e.message.getUnformattedText().startsWith("Sala> Você está atualmente na sala: ")) {
                     SabotageRP.instance.currentServer = e.message.getUnformattedText().replace("Sala> Você está atualmente na sala: ", "");

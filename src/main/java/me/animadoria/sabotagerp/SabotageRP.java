@@ -2,6 +2,7 @@ package me.animadoria.sabotagerp;
 
 import com.jagrosh.discordipc.IPCClient;
 import com.jagrosh.discordipc.entities.RichPresence;
+import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -18,6 +19,8 @@ public class SabotageRP {
     @Mod.Instance
     public static SabotageRP instance;
 
+    public boolean discordEnabled = true;
+
     public IPCClient discord;
     public boolean onServer;
     public boolean waitingServerName;
@@ -33,30 +36,33 @@ public class SabotageRP {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         setMainMenuPresence();
-
         MinecraftForge.EVENT_BUS.register(new SabotageListener());
+        ClientCommandHandler.instance.registerCommand(new SabotageRPCommand());
     }
 
 
     public void updatePresence() {
-        RichPresence.Builder builder = new RichPresence.Builder()
-                .setDetails("Na sala " + currentServer)
-                .setStartTimestamp(OffsetDateTime.now())
-                .setSmallImage("gamemods512c", "sabotador.com")
-                .setLargeImage("sabotador");
-        if (currentServer.contains("Hub"))
-            builder.setDetails("No Hub");
+        if (discordEnabled) {
+            RichPresence.Builder builder = new RichPresence.Builder()
+                    .setDetails("Na sala " + currentServer)
+                    .setStartTimestamp(OffsetDateTime.now())
+                    .setSmallImage("gamemods512c", "sabotador.com")
+                    .setLargeImage("sabotador");
+            if (currentServer.toLowerCase().contains("hub"))
+                builder.setDetails("No Hub");
 
-        discord.sendRichPresence(builder.build());
+            discord.sendRichPresence(builder.build());
+        }
     }
 
     public void setMainMenuPresence() {
-        discord.sendRichPresence(new RichPresence.Builder().setDetails("No menu principal").build());
+        if (discordEnabled)
+            discord.sendRichPresence(new RichPresence.Builder().setDetails("No menu principal").build());
     }
 
     public void setOtherPresence() {
-        discord.sendRichPresence(new RichPresence.Builder().setDetails("Em outro servidor").build());
+        if (discordEnabled)
+            discord.sendRichPresence(new RichPresence.Builder().setDetails("Em outro servidor").build());
     }
 }
