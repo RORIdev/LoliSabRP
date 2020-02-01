@@ -2,4 +2,17 @@ commands.sabotagerp.usage=/sabotagerp <on|off>
 commands.sabotagerp.disable.error=Rich Presence já está desativado!
 commands.sabotagerp.disable.success=Rich Presence foi desativado com sucesso.
 commands.sabotagerp.enable.error=Rich Presence já está ativado!
+<<<<<<< Updated upstream
 commands.sabotagerp.enable.success=Rich Presence foi ativado com sucesso.
+=======
+commands.sabotagerp.enable.success=Rich Presence foi ativado com sucesso.
+
+sabotagerp.game.sabotage=Sabotador
+sabotagerp.game.bedwars=BedWars
+
+sabotagerp.presence.room=Na sala %s
+sabotagerp.presence.game=Jogando %s
+sabotagerp.presence.hub=No Hub
+sabotagerp.presence.mainmenu=No menu principal
+sabotagerp.presence.otherserver=Em outro servidor
+>>>>>>> Stashed changes
