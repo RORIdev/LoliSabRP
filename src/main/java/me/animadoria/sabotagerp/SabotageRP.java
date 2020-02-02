@@ -5,10 +5,11 @@ import com.jagrosh.discordipc.entities.RichPresence;
 import net.minecraft.client.resources.I18n;
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import scala.collection.parallel.ParSeqLike;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 import java.time.OffsetDateTime;
 
@@ -18,19 +19,30 @@ public class SabotageRP {
     public static final String VERSION = "1.0";
     public static final String MODNAME = "Sabotage RP";
 
+    public static Configuration config;
+
     @Mod.Instance
     public static SabotageRP instance;
+
+    public SabotageLanguage language;
 
     public boolean discordEnabled = true;
 
     public IPCClient discord;
     public boolean onServer;
     public boolean waitingServerName;
-    public boolean waitingGameNameChange;
     public String currentServer;
     public String currentGame;
 
     public String[] serverIPs = new String[]{"sabotador.com", "mini.gamemods.com.br", "sab.sabotador.com", "jogar.gamemods.com.br"};
+
+    @EventHandler
+    public void preInit(FMLPreInitializationEvent event) {
+        config = new Configuration(event.getSuggestedConfigurationFile());
+        config.load();
+
+        discordEnabled = config.getBoolean("enabled", "discord", true, "Enables/Disables Rich Presence altogether.");
+    }
 
     @EventHandler
     public void init(FMLInitializationEvent event) {

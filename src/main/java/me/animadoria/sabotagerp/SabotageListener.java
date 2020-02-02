@@ -35,30 +35,35 @@ public class SabotageListener {
     public void onChat(ClientChatReceivedEvent e) {
         if (SabotageRP.instance.onServer && SabotageRP.instance.discordEnabled) {
             if (SabotageRP.instance.waitingServerName) {
-                if (e.message.getUnformattedText().startsWith("Sala> Você está atualmente na sala: ")) {
-                    SabotageRP.instance.currentServer = e.message.getUnformattedText().replace("Sala> Você está atualmente na sala: ", "");
-                    e.setCanceled(true);
+                if (e.message.getUnformattedText().startsWith("Sala> Você está atualmente na sala: "))
+                    SabotageRP.instance.language = SabotageLanguage.PORTUGUESE;
+                if (e.message.getUnformattedText().startsWith("Room> You are currently on room:"))
+                    SabotageRP.instance.language = SabotageLanguage.ENGLISH;
 
-                    GuiPlayerTabOverlay tab = Minecraft.getMinecraft().ingameGUI.getTabList();
-                    IChatComponent header = ReflectionHelper.getPrivateValue(GuiPlayerTabOverlay.class, tab, "header", "field_175256_i");
-                    SabotageRP.instance.currentGame = header.getUnformattedText().split("\nVocê está jogando ")[1].replace(" no sabotador.com", "").replace("\n", "");
+                SabotageRP.instance.currentServer = e.message.getUnformattedText().replace(Translation.currentRoomTranslation.get(SabotageRP.instance.language), "");
+                e.setCanceled(true);
 
-                    SabotageRP.instance.updatePresence();
-                    SabotageRP.instance.waitingServerName = false;
-                }
-            }
-
-            if (e.message.getUnformattedText().startsWith("Entrar> Você trocou de sala de ")) {
-                SabotageRP.instance.waitingGameNameChange = true;
-                SabotageRP.instance.currentServer = e.message.getUnformattedText().split(" para ")[1];
-                GuiPlayerTabOverlay tab = Minecraft.getMinecraft().ingameGUI.getTabList();
-                IChatComponent header = ReflectionHelper.getPrivateValue(GuiPlayerTabOverlay.class, tab, "header", "field_175256_i");
-                SabotageRP.instance.currentGame = header.getUnformattedText().split("\nVocê está jogando ")[1].replace(" no sabotador.com", "").replace("\n", "");
-                SabotageRP.instance.updatePresence();
+                getCurrentGameByTab();
+                SabotageRP.instance.waitingServerName = false;
             }
         }
 
+        if (e.message.getUnformattedText().startsWith(Translation.switchedRoomTranslation.get(SabotageRP.instance.language))) {
+            SabotageRP.instance.currentServer = e.message.getUnformattedText().split(Translation.propositionTranslation.get(SabotageRP.instance.language))[1];
+            getCurrentGameByTab();
+            SabotageRP.instance.updatePresence();
+        }
     }
 
 
+    void getCurrentGameByTab() {
+        GuiPlayerTabOverlay tab = Minecraft.getMinecraft().ingameGUI.getTabList();
+        IChatComponent header = ReflectionHelper.getPrivateValue(GuiPlayerTabOverlay.class, tab, "header", "field_175256_i");
+        SabotageRP.instance.currentGame = header.getUnformattedText().replace("\n", "").split(Translation.tabGameMessageStart.get(SabotageRP.instance.language))[1].replace(Translation.tabGameMessageEnd.get(SabotageRP.instance.language), "");
+
+        SabotageRP.instance.updatePresence();
+    }
 }
+
+
+

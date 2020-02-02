@@ -34,6 +34,9 @@ public class SabotageRPCommand extends CommandBase {
             SabotageRP.instance.waitingServerName = true;
             Minecraft.getMinecraft().getNetHandler().getNetworkManager().sendPacket(new C01PacketChatMessage("/server"));
 
+            SabotageRP.config.get("discord", "enabled", true).set(true);
+            SabotageRP.config.save();
+
             sender.addChatMessage(new ChatComponentTranslation("commands.sabotagerp.enable.success"));
 
             try {
@@ -43,13 +46,14 @@ public class SabotageRPCommand extends CommandBase {
             }
         }
         if (args[0].equals("off")) {
-            if (!SabotageRP.instance.discordEnabled)
-            {
+            if (!SabotageRP.instance.discordEnabled) {
                 sender.addChatMessage(new ChatComponentTranslation("commands.sabotagerp.disable.error"));
                 return;
             }
             SabotageRP.instance.discordEnabled = false;
             SabotageRP.instance.discord.close();
+            SabotageRP.config.get("discord", "enabled", false).set(false);
+            SabotageRP.config.save();
             sender.addChatMessage(new ChatComponentTranslation("commands.sabotagerp.disable.success"));
         }
     }
