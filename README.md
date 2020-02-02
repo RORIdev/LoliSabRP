@@ -1,4 +1,4 @@
-# SabotageRP
-Rich Presence mod for the Sabotador.com server
+# LoliSabRP
+Rich Presence mod for the Sabotador.com server - roridev's implementation
 
-SabotageRP is licensed under the Apache License 2.0.
+LoliSabRP is licensed under the Apache License 2.0.
