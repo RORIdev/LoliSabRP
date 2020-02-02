@@ -43,8 +43,7 @@ public class SabotageRPCommand extends CommandBase {
             }
         }
         if (args[0].equals("off")) {
-            if (!SabotageRP.instance.discordEnabled)
-            {
+            if (!SabotageRP.instance.discordEnabled) {
                 sender.addChatMessage(new ChatComponentTranslation("commands.sabotagerp.disable.error"));
                 return;
             }

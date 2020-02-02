@@ -14,3 +14,4 @@ sabotagerp.presence.hub=In Hub
 sabotagerp.presence.mainmenu=On main menu
 sabotagerp.presence.otherserver=On other server
 
+sabotagerp.message.changelang=SabotageRP does not work correctly when you change the language without relogging. If you changed your language, please relog.

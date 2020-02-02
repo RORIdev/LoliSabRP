@@ -8,7 +8,6 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import scala.collection.parallel.ParSeqLike;
 
 import java.time.OffsetDateTime;
 
@@ -21,16 +20,18 @@ public class SabotageRP {
     @Mod.Instance
     public static SabotageRP instance;
 
+    public SabotageLanguage language;
+
     public boolean discordEnabled = true;
 
     public IPCClient discord;
     public boolean onServer;
     public boolean waitingServerName;
-    public boolean waitingGameNameChange;
     public String currentServer;
     public String currentGame;
 
     public String[] serverIPs = new String[]{"sabotador.com", "mini.gamemods.com.br", "sab.sabotador.com", "jogar.gamemods.com.br"};
+
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
